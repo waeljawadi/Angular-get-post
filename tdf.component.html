@@ -1,0 +1,43 @@
+<p></p>
+<div class="container">
+  <form #userform="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="myemail">Email address</label>
+      <input type="email" id="myemail" #fname="ngModel" [(ngModel)]="bindemail" name="myemail" aria-describedby="emailHelp" placeholder="Enter email"
+        class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required [class.is-invalid]="fname.invalid && fname.touched"
+      />
+      {{bindpassword}}
+
+
+      {{datex}}
+      <div [class.hide-it]="fname.valid || fname.untouched" class="alert alert-danger marg-top" role="alert">Your data aren't valid</div>
+    </div>
+    <div class="form-group">
+      <label for="mypassword">Password</label>
+      <input type="password" class="form-control" id="mypassword" [class.is-invalid]="password.invalid && password.touched" placeholder="Password"
+      [(ngModel)]="bindpassword" name="password" required #password="ngModel" pattern=".{5,10}" />
+    </div>
+    <div [class.hide-it]="password.valid || password.untouched" class="alert alert-danger marg-top" role="alert">Your password is not valid</div>
+    <div class="form-group">
+      <label for="exampleSelect1">Example select</label>
+      <select class="form-control" id="select" name="select" [(ngModel)]="bindchois" #nselect="ngModel" required [class.is-invalid]="nselect.invalid && nselect.touched">
+        <option value="Choisir votre numero preferer" selected>Choisir votre numero preferer</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+      <div [class.hide-it]="nselect.valid || nselect.untouched" class="alert alert-danger marg-top" role="alert">Please choose a number</div>
+    </div>
+    <button type="submit" [disabled]="userform.form.invalid" class="btn btn-primary">Submit</button>
+  </form>
+
+
+<!-- <div *ngFor="let item of tab_of_items">
+  <p>{{item.id}}</p>
+  <p>{{item.email}}</p>
+  <p>{{item.password}}</p>
+  <p>{{item.n_choisie}}</p>
+</div> -->
+
+
+</div>
